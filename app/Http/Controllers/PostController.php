@@ -9,7 +9,7 @@ class PostController extends Controller
 {
     public function index()
     {
-        $posts = Post::with('user')->get();
-        return response()->json($posts);
+        $posts = Post::with('user')->orderByDesc('id')->get();
+        return response()->json(['user' => auth()->user(), 'posts' => $posts]);
     }
 }
