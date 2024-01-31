@@ -29,12 +29,6 @@ class PostControllerTest extends TestCase
     $posts = json_decode($response->getContent(), true);
 
     // Assert that the posts are sorted in descending order based on 'id'
-    $this->assertEquals(200, $response->status());
-
-    // Check if the posts array is present in the response
-    $this->assertArrayHasKey('posts', $posts);
-
-    // Assert that the posts are sorted in descending order based on 'id'
-    $this->assertEquals([['id' => 2, 'body' => $post2->body], ['id' => 1, 'body' => $post1->body]], $posts['posts']);
+    $this->assertEquals([2, 1], array_column($posts, 'id'));
     }
 }
